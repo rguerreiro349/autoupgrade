@@ -1,0 +1,14 @@
+[Unit]
+Description=Atualização Automática
+After=network-online.target
+
+[Service]
+Type=simple
+SyslogIdentifier=autoupgrade
+ExecStart=nice -n 19 pacman -Syuq --noconfirm
+TimeoutStopSec=300
+KillMode=process
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
